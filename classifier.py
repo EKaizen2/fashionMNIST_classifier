@@ -33,3 +33,25 @@ print(test_dataset.targets.shape)
 
 print(train_dataset.targets)
 print(test_dataset.targets)
+
+# Define the Neural Network
+class FashionClassifier(nn.Module):
+    def __init__(self):
+        super(FashionClassifier, self).__init__()
+        self.flatten = nn.Flatten()
+        self.network = nn.Sequential(
+            nn.Linear(28 * 28, 512),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(512, 256),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Linear(128, 10)
+        )
+
+    def forward(self, x):
+        x = self.flatten(x)
+        return self.network(x)
+
