@@ -1,0 +1,169 @@
+Fashion MNIST Classifier Training Session
+Start Time: 2025-04-23 13:36:10.930894
+Device: cuda
+
+Model Architecture:
+FashionClassifier(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (network): Sequential(
+    (0): Linear(in_features=784, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=512, out_features=256, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.2, inplace=False)
+    (6): Linear(in_features=256, out_features=128, bias=True)
+    (7): ReLU()
+    (8): Linear(in_features=128, out_features=10, bias=True)
+  )
+)
+
+Training Set Size: 60000
+Test Set Size: 10000
+Classes: ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
+Starting Training at 2025-04-23 13:36:10.931059
+Training on device: cuda
+Epoch 1, Batch 100: Loss = 0.9056
+Epoch 1, Batch 200: Loss = 0.5856
+Epoch 1, Batch 300: Loss = 0.5701
+Epoch 1, Batch 400: Loss = 0.5116
+Epoch 1, Batch 500: Loss = 0.4863
+Epoch 1, Batch 600: Loss = 0.4552
+Epoch 1, Batch 700: Loss = 0.4623
+Epoch 1, Batch 800: Loss = 0.4380
+Epoch 1, Batch 900: Loss = 0.4240
+Completed Epoch 1
+Epoch 2, Batch 100: Loss = 0.4430
+Epoch 2, Batch 200: Loss = 0.4089
+Epoch 2, Batch 300: Loss = 0.4102
+Epoch 2, Batch 400: Loss = 0.4035
+Epoch 2, Batch 500: Loss = 0.4161
+Epoch 2, Batch 600: Loss = 0.4051
+Epoch 2, Batch 700: Loss = 0.3910
+Epoch 2, Batch 800: Loss = 0.4009
+Epoch 2, Batch 900: Loss = 0.3929
+Completed Epoch 2
+Epoch 3, Batch 100: Loss = 0.3776
+Epoch 3, Batch 200: Loss = 0.3674
+Epoch 3, Batch 300: Loss = 0.3725
+Epoch 3, Batch 400: Loss = 0.3754
+Epoch 3, Batch 500: Loss = 0.3612
+Epoch 3, Batch 600: Loss = 0.3721
+Epoch 3, Batch 700: Loss = 0.3793
+Epoch 3, Batch 800: Loss = 0.3709
+Epoch 3, Batch 900: Loss = 0.3676
+Completed Epoch 3
+Epoch 4, Batch 100: Loss = 0.3353
+Epoch 4, Batch 200: Loss = 0.3501
+Epoch 4, Batch 300: Loss = 0.3449
+Epoch 4, Batch 400: Loss = 0.3501
+Epoch 4, Batch 500: Loss = 0.3391
+Epoch 4, Batch 600: Loss = 0.3496
+Epoch 4, Batch 700: Loss = 0.3482
+Epoch 4, Batch 800: Loss = 0.3558
+Epoch 4, Batch 900: Loss = 0.3482
+Completed Epoch 4
+Epoch 5, Batch 100: Loss = 0.3106
+Epoch 5, Batch 200: Loss = 0.3159
+Epoch 5, Batch 300: Loss = 0.3436
+Epoch 5, Batch 400: Loss = 0.3503
+Epoch 5, Batch 500: Loss = 0.3394
+Epoch 5, Batch 600: Loss = 0.3317
+Epoch 5, Batch 700: Loss = 0.3417
+Epoch 5, Batch 800: Loss = 0.3139
+Epoch 5, Batch 900: Loss = 0.3187
+Completed Epoch 5
+
+Starting Testing Phase
+Test Accuracy: 86.77%
+Prediction for fashion-jpegs/trouser.jpg: Trouser
+Error processing image: [Errno 2] No such file or directory: '/home/ephraimkaizen/Documents/UCT/Machine Learning - Retake/fashionMNIST_classifier/fashion-jpegs.bag.jpg'
+Prediction for fashion-jpegs/bag.jpg: Bag
+Prediction for fashion-jpegs/dress1.jpg: Dress
+
+Session ended by user
+
+==================================================
+Fashion MNIST Classifier Training Session
+Start Time: 2025-04-23 13:38:39.248078
+Device: cuda
+
+Model Architecture:
+FashionClassifier(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (network): Sequential(
+    (0): Linear(in_features=784, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Dropout(p=0.2, inplace=False)
+    (3): Linear(in_features=512, out_features=256, bias=True)
+    (4): ReLU()
+    (5): Dropout(p=0.2, inplace=False)
+    (6): Linear(in_features=256, out_features=128, bias=True)
+    (7): ReLU()
+    (8): Linear(in_features=128, out_features=10, bias=True)
+  )
+)
+
+Training Set Size: 60000
+Test Set Size: 10000
+Classes: ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat', 'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
+Starting Training at 2025-04-23 13:38:39.248234
+Training on device: cuda
+Epoch 1, Batch 100: Loss = 0.8965
+Epoch 1, Batch 200: Loss = 0.5829
+Epoch 1, Batch 300: Loss = 0.5406
+Epoch 1, Batch 400: Loss = 0.5099
+Epoch 1, Batch 500: Loss = 0.4948
+Epoch 1, Batch 600: Loss = 0.4679
+Epoch 1, Batch 700: Loss = 0.4782
+Epoch 1, Batch 800: Loss = 0.4470
+Epoch 1, Batch 900: Loss = 0.4270
+Completed Epoch 1
+Epoch 2, Batch 100: Loss = 0.4242
+Epoch 2, Batch 200: Loss = 0.4256
+Epoch 2, Batch 300: Loss = 0.4051
+Epoch 2, Batch 400: Loss = 0.4021
+Epoch 2, Batch 500: Loss = 0.4002
+Epoch 2, Batch 600: Loss = 0.4087
+Epoch 2, Batch 700: Loss = 0.4043
+Epoch 2, Batch 800: Loss = 0.3878
+Epoch 2, Batch 900: Loss = 0.3974
+Completed Epoch 2
+Epoch 3, Batch 100: Loss = 0.3740
+Epoch 3, Batch 200: Loss = 0.3671
+Epoch 3, Batch 300: Loss = 0.3784
+Epoch 3, Batch 400: Loss = 0.3905
+Epoch 3, Batch 500: Loss = 0.3665
+Epoch 3, Batch 600: Loss = 0.3663
+Epoch 3, Batch 700: Loss = 0.3759
+Epoch 3, Batch 800: Loss = 0.3775
+Epoch 3, Batch 900: Loss = 0.3624
+Completed Epoch 3
+Epoch 4, Batch 100: Loss = 0.3499
+Epoch 4, Batch 200: Loss = 0.3549
+Epoch 4, Batch 300: Loss = 0.3501
+Epoch 4, Batch 400: Loss = 0.3368
+Epoch 4, Batch 500: Loss = 0.3511
+Epoch 4, Batch 600: Loss = 0.3509
+Epoch 4, Batch 700: Loss = 0.3531
+Epoch 4, Batch 800: Loss = 0.3460
+Epoch 4, Batch 900: Loss = 0.3431
+Completed Epoch 4
+Epoch 5, Batch 100: Loss = 0.3441
+Epoch 5, Batch 200: Loss = 0.3450
+Epoch 5, Batch 300: Loss = 0.3144
+Epoch 5, Batch 400: Loss = 0.3206
+Epoch 5, Batch 500: Loss = 0.3237
+Epoch 5, Batch 600: Loss = 0.3308
+Epoch 5, Batch 700: Loss = 0.3373
+Epoch 5, Batch 800: Loss = 0.3344
+Epoch 5, Batch 900: Loss = 0.3316
+Completed Epoch 5
+
+Starting Testing Phase
+Test Accuracy: 86.87%
+Prediction for fashion-jpegs/sneaker1.jpg: Sneaker
+
+Session ended by user

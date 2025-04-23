@@ -74,21 +74,25 @@ def setup_logger():
     if not os.path.exists('logs'):
         os.makedirs('logs')
     
-    # Create log file with timestamp
-    timestamp = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-    log_file = f'logs/training_log_{timestamp}.txt'
+    log_file = 'logs/logs.txt'
+    
+    # Add session separator if file exists
+    if os.path.exists(log_file):
+        with open(log_file, 'a') as f:
+            f.write('\n' + '='*50 + '\n')
     
     return log_file
 
-def log_message(log_file, message):
+def log_message(log_file, message, file_handle=None):
     print(message)  # Still print to console
-    with open(log_file, 'a') as f:
-        f.write(message + '\n')
+    if file_handle:
+        file_handle.write(message + '\n')
+        file_handle.flush()  # Ensure the message is written immediately
 
-def train_model(epochs=5, log_file=None):
+def train_model(epochs=5, log_file=None, file_handle=None):
     model.train()
-    log_message(log_file, f"\nStarting Training at {datetime.datetime.now()}")
-    log_message(log_file, f"Training on device: {device}")
+    log_message(log_file, f"\nStarting Training at {datetime.datetime.now()}", file_handle)
+    log_message(log_file, f"Training on device: {device}", file_handle)
     
     for epoch in range(epochs):
         running_loss = 0.0
@@ -105,18 +109,17 @@ def train_model(epochs=5, log_file=None):
             
             if batch_idx % 100 == 99:
                 log_msg = f'Epoch {epoch + 1}, Batch {batch_idx + 1}: Loss = {running_loss / 100:.4f}'
-                log_message(log_file, log_msg)
+                log_message(log_file, log_msg, file_handle)
                 running_loss = 0.0
         
-        # Log epoch completion
-        log_message(log_file, f'Completed Epoch {epoch + 1}')
+        log_message(log_file, f'Completed Epoch {epoch + 1}', file_handle)
 
-def test_model(log_file=None):
+def test_model(log_file=None, file_handle=None):
     model.eval()
     correct = 0
     total = 0
     
-    log_message(log_file, "\nStarting Testing Phase")
+    log_message(log_file, "\nStarting Testing Phase", file_handle)
     
     with torch.no_grad():
         for data, target in test_loader:
@@ -127,10 +130,10 @@ def test_model(log_file=None):
             correct += (predicted == target).sum().item()
     
     accuracy = 100 * correct / total
-    log_message(log_file, f'Test Accuracy: {accuracy:.2f}%')
+    log_message(log_file, f'Test Accuracy: {accuracy:.2f}%', file_handle)
     return accuracy
 
-def predict_image(image_path, log_file=None):
+def predict_image(image_path, log_file=None, file_handle=None):
     try:
         # Load image using PIL
         img = Image.open(image_path).convert('L')
@@ -149,11 +152,11 @@ def predict_image(image_path, log_file=None):
             _, predicted = torch.max(output.data, 1)
             class_name = train_dataset.classes[predicted.item()]
             
-            log_message(log_file, f"Prediction for {image_path}: {class_name}")
+            log_message(log_file, f"Prediction for {image_path}: {class_name}", file_handle)
             return class_name
     except Exception as e:
         error_msg = f"Error processing image: {str(e)}"
-        log_message(log_file, error_msg)
+        log_message(log_file, error_msg, file_handle)
         return error_msg
 
 # Main execution
@@ -161,33 +164,35 @@ if __name__ == "__main__":
     # Setup logging
     log_file = setup_logger()
     
-    # Log initial information
-    log_message(log_file, "Fashion MNIST Classifier Training Session")
-    log_message(log_file, f"Start Time: {datetime.datetime.now()}")
-    log_message(log_file, f"Device: {device}")
-    log_message(log_file, "\nModel Architecture:")
-    log_message(log_file, str(model))
-    
-    # Log dataset information
-    log_message(log_file, f"\nTraining Set Size: {len(train_dataset)}")
-    log_message(log_file, f"Test Set Size: {len(test_dataset)}")
-    log_message(log_file, f"Classes: {train_dataset.classes}")
-    
-    print("Training the model...")
-    train_model(epochs=5, log_file=log_file)
-    
-    print("\nTesting the model...")
-    test_accuracy = test_model(log_file=log_file)
-    
-    print("\nModel ready for predictions!")
-    while True:
-        filepath = input("\nPlease enter a filepath (or 'exit' to quit): ")
-        if filepath.lower() == 'exit':
-            log_message(log_file, "\nSession ended by user")
-            print("Exiting...")
-            break
+    # Open log file for the session
+    with open(log_file, 'a') as log_handle:
+        # Log initial information
+        log_message(log_file, "Fashion MNIST Classifier Training Session", log_handle)
+        log_message(log_file, f"Start Time: {datetime.datetime.now()}", log_handle)
+        log_message(log_file, f"Device: {device}", log_handle)
+        log_message(log_file, "\nModel Architecture:", log_handle)
+        log_message(log_file, str(model), log_handle)
         
-        prediction = predict_image(filepath, log_file=log_file)
-        print(f"Classifier: {prediction}")
+        # Log dataset information
+        log_message(log_file, f"\nTraining Set Size: {len(train_dataset)}", log_handle)
+        log_message(log_file, f"Test Set Size: {len(test_dataset)}", log_handle)
+        log_message(log_file, f"Classes: {train_dataset.classes}", log_handle)
+        
+        print("Training the model...")
+        train_model(epochs=5, log_file=log_file, file_handle=log_handle)
+        
+        print("\nTesting the model...")
+        test_accuracy = test_model(log_file=log_file, file_handle=log_handle)
+        
+        print("\nModel ready for predictions!")
+        while True:
+            filepath = input("\nPlease enter a filepath (or 'exit' to quit): ")
+            if filepath.lower() == 'exit':
+                log_message(log_file, "\nSession ended by user", log_handle)
+                print("Exiting...")
+                break
+            
+            prediction = predict_image(filepath, log_file=log_file, file_handle=log_handle)
+            print(f"Classifier: {prediction}")
 
 
