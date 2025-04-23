@@ -1,6 +1,10 @@
 
 
-# fashionMNIST_classifier GitHub Repository: https://github.com/EKaizen2/fashionMNIST_classifier.git 
+# fashionMNIST_classifier 
+GitHub Repository: https://github.com/EKaizen2/fashionMNIST_classifier.git 
+classifier.py: The main script for the classifier
+logs.txt: The log file for the classifier terminal outputs 
+makefile: The Makefile contains commands for setting up the project and running the classifier
 
 Makefile usage:
 make or make all: Sets up the project and runs the classifier
