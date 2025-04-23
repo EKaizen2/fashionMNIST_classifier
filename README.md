@@ -1,4 +1,17 @@
-# fashionMNIST_classifier
+
+
+# fashionMNIST_classifier GitHub Repository: https://github.com/EKaizen2/fashionMNIST_classifier.git 
+
+Makefile usage:
+make or make all: Sets up the project and runs the classifier
+make setup: Creates necessary directories and downloads the dataset
+make run: Runs the classifier
+make clean: Removes all generated files (logs, cache, dataset)
+make clean-logs: Removes only the log files
+make logs: Displays the contents of logs.txt
+make deps: Installs required Python packages
+make help: Shows help information about available commands
+
 
 # Fashion MNIST Neural Network Classifier
 
@@ -37,3 +50,5 @@ The Fashion MNIST dataset consists of:
 - Hidden layers: 512 → 256 → 128 neurons
 - Output layer: 10 neurons (classes)
 - ReLU activation and dropout for regularization
+
+
