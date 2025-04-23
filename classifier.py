@@ -55,3 +55,31 @@ class FashionClassifier(nn.Module):
         x = self.flatten(x)
         return self.network(x)
 
+BATCH_SIZE = 64
+train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=BATCH_SIZE, shuffle=False)
+
+# Initialize model, loss function, and optimizer
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model = FashionClassifier().to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+def train_model(epochs=5):
+    model.train()
+    for epoch in range(epochs):
+        running_loss = 0.0
+        for batch_idx, (data, target) in enumerate(train_loader):
+            data, target = data.to(device), target.to(device)
+            
+            optimizer.zero_grad()
+            output = model(data)
+            loss = criterion(output, target)
+            loss.backward()
+            optimizer.step()
+            
+            running_loss += loss.item()
+            
+            if batch_idx % 100 == 99:
+                print(f'Epoch {epoch + 1}, Batch {batch_idx + 1}: Loss = {running_loss / 100:.4f}')
+                running_loss = 0.0
